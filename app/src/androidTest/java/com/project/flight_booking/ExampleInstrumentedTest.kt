@@ -1,4 +1,4 @@
-package com.project.flight_booking
+package com.project.FlightBooking
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.project.flight_booking", appContext.packageName)
+        assertEquals("com.project.FlightBooking", appContext.packageName)
     }
 }

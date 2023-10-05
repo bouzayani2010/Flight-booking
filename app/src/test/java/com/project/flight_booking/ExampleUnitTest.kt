@@ -1,4 +1,4 @@
-package com.project.flight_booking
+package com.project.FlightBooking
 
 import org.junit.Test
 
