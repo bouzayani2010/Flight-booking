@@ -1,7 +1,9 @@
 package com.project.flight_booking.ui
 
+import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.project.flight_booking.R
@@ -25,9 +27,15 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
 
 
-        viewModel.data.observe(this, Observer { response ->
+        viewModel.data.observe(this) { trip ->
+            trip?.let { it ->
+                it.asSequence().iterator().forEach {trip->
+                    Log.i(TAG, " onCreate: $trip")
+                }
+            }
             // Update UI with the data
-        })
+
+        }
 
         viewModel.fetchData()
     }

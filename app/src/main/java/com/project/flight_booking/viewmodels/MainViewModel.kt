@@ -1,5 +1,7 @@
 package com.project.flight_booking.viewmodels
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,24 +10,29 @@ import com.project.flight_booking.model.Trip
 import com.project.flight_booking.repositry.MainRepositry
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainViewModel(private val repository: MainRepositry) : ViewModel() {
-        private val _data = MutableLiveData<Trip>()
-        val data: LiveData<Trip>
+        private val _data = MutableLiveData<List<Trip>>()
+        val data: LiveData<List<Trip>>
             get() = _data
 
     fun fetchData() {
         viewModelScope.launch {
-            try {
-                // Perform the asynchronous operation, e.g., network request
-                val result = repository.loadData()
+            repository.loadData().enqueue(object :Callback<List<Trip>>{
+                override fun onResponse(call: Call<List<Trip>>, response: Response<List<Trip>>) {
+                    if (response.isSuccessful) {
+                        _data.postValue(response.body())
+                    }
+                }
 
-                // Update LiveData with the result on the main thread
-                _data.value = result
-            } catch (exception: Exception) {
-                // Handle exceptions or errors here
-                // You can also update LiveData with an error state if needed
-            }
+                override fun onFailure(call: Call<List<Trip>>, t: Throwable) {
+                    Log.i(TAG, "onFailure: "+t.stackTraceToString())
+                }
+
+            })
         }
     }
 
