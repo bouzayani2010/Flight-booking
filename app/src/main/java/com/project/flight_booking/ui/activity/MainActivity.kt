@@ -1,4 +1,4 @@
-package com.project.flight_booking.ui
+package com.project.flight_booking.ui.activity
 
 import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
 
 
-        navController.navigate(R.id.action_list_to_details)
+    //    navController.navigate(R.id.action_list_to_details)
 
 
 
@@ -36,16 +36,7 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
 
 
-        viewModel.data.observe(this) { trip ->
-            trip?.let { it ->
-                it.asSequence().iterator().forEach {trip->
-                    Log.i(TAG, " onCreate: $trip")
-                }
-            }
-            // Update UI with the data
 
-        }
-
-        viewModel.fetchData()
+       // viewModel.fetchData()
     }
 }

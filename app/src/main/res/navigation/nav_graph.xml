@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/listFlightFragment"
-        android:name="com.project.flight_booking.ui.ListFlightFragment"
+        android:name="com.project.flight_booking.ui.fragment.ListFlightFragment"
         android:label="List Flights"
         tools:layout="@layout/fragment_list_flights">
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/detailFlightFragment"
-        android:name="com.project.flight_booking.ui.DetailFlightFragment"
+        android:name="com.project.flight_booking.ui.fragment.DetailFlightFragment"
         android:label="Detail Flight"
         tools:layout="@layout/fragment_detail_flight">
         <!-- Add any actions or arguments if needed -->

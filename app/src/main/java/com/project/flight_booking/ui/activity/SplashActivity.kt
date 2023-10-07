@@ -1,4 +1,4 @@
-package com.project.flight_booking.ui
+package com.project.flight_booking.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
