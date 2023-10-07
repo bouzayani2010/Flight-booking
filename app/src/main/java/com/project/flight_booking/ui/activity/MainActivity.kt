@@ -35,7 +35,11 @@ class MainActivity : AppCompatActivity() {
         val viewModelFactory = MainViewModelFactory(repository)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
 
-
+        viewModel.selectedtrip.observe(this){trip->
+            trip?.let {
+                navController.navigate(R.id.action_list_to_details)
+            }
+        }
 
        // viewModel.fetchData()
     }

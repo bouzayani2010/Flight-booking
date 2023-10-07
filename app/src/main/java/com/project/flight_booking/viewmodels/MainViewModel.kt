@@ -15,13 +15,17 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MainViewModel(private val repository: MainRepositry) : ViewModel() {
-        private val _data = MutableLiveData<List<Trip>>()
-        val data: LiveData<List<Trip>>
-            get() = _data
+    private val _data = MutableLiveData<List<Trip>>()
+    val data: LiveData<List<Trip>>
+        get() = _data
+
+    private val _selectedtrip = MutableLiveData<Trip>()
+    val selectedtrip: LiveData<Trip>
+        get() = _selectedtrip
 
     fun fetchData() {
         viewModelScope.launch {
-            repository.loadData().enqueue(object :Callback<List<Trip>>{
+            repository.loadData().enqueue(object : Callback<List<Trip>> {
                 override fun onResponse(call: Call<List<Trip>>, response: Response<List<Trip>>) {
                     if (response.isSuccessful) {
                         _data.postValue(response.body())
@@ -29,11 +33,14 @@ class MainViewModel(private val repository: MainRepositry) : ViewModel() {
                 }
 
                 override fun onFailure(call: Call<List<Trip>>, t: Throwable) {
-                    Log.i(TAG, "onFailure: "+t.stackTraceToString())
+                    Log.i(TAG, "onFailure: " + t.stackTraceToString())
                 }
 
             })
         }
+    }
+    fun setSlectedTrip(item: Trip){
+        _selectedtrip.postValue(item)
     }
 
     // Cancel any ongoing coroutines when the ViewModel is cleared
@@ -41,7 +48,6 @@ class MainViewModel(private val repository: MainRepositry) : ViewModel() {
         super.onCleared()
         viewModelScope.cancel()
     }
-
 
 
 }

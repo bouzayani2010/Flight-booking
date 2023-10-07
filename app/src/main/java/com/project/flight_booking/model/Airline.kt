@@ -2,7 +2,7 @@ package com.project.flight_booking.model
 
 data class Airline (
 
-    val airport: String,
-    val timezone: String,
-    val iata: String
+    val name: String,
+    val iata: String,
+    val icao: String
 )

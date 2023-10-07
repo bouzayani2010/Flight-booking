@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -29,7 +28,7 @@ class ListFlightFragment : Fragment() {
 
         val repository = MainRepositry(RetrofitClient.apiService)
         val viewModelFactory = MainViewModelFactory(repository)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity(), viewModelFactory).get(MainViewModel::class.java)
 
         setObservers()
     }
@@ -43,12 +42,12 @@ class ListFlightFragment : Fragment() {
                 recyclerView?.layoutManager = LinearLayoutManager(context)
 
 
-                listFlightsAdapter = ListFlightsAdapter(it)
+                listFlightsAdapter = ListFlightsAdapter(it, viewModel)
                 recyclerView?.adapter = listFlightsAdapter
             }
-            // Update UI with the data
 
         }
+
         viewModel.fetchData()
     }
 
