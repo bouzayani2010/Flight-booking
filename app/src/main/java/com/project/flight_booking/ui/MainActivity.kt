@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import com.project.flight_booking.R
 import com.project.flight_booking.apis.RetrofitClient
 import com.project.flight_booking.repositry.MainRepositry
@@ -20,6 +21,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+
+
+        navController.navigate(R.id.action_list_to_details)
+
+
 
 
         val repository = MainRepositry(RetrofitClient.apiService)

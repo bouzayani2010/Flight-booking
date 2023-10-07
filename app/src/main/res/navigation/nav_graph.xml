@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/listFlightFragment">
+
+    <fragment
+        android:id="@+id/listFlightFragment"
+        android:name="com.project.flight_booking.ui.ListFlightFragment"
+        android:label="List Flights"
+        tools:layout="@layout/fragment_list_flights">
+        <action
+            android:id="@+id/action_list_to_details"
+            app:destination="@id/detailFlightFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailFlightFragment"
+        android:name="com.project.flight_booking.ui.DetailFlightFragment"
+        android:label="Detail Flight"
+        tools:layout="@layout/fragment_detail_flight">
+        <!-- Add any actions or arguments if needed -->
+    </fragment>
+
+</navigation>
